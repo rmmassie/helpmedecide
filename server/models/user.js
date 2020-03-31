@@ -2,26 +2,28 @@ module.exports = function (sequelize, DataTypes) {
     return sequelize.define('user', {
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: false,
+            unique: true
         },
         
-        passwordhash: DataTypes.STRING,
+        passwordhash: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
 
         pollCount: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
 
         responseCount: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
 
         rank: {
             type: DataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         }
-
     });
-    
 };

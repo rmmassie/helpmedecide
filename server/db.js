@@ -7,11 +7,11 @@ const sequelize = new Sequelize('helpMeDecide', 'postgres', process.env.PGPW, {
 
 sequelize.authenticate().then(
     function() {
-        console.log('Conntectd to the HelpMeDecide postgres database');
+        console.log('Database Connection Established');
     },
     function(err){
-        console.log(err);
+        console.log('No Database Connection', err);
     }
 )
 
-module.exports= sequelize;
+module.exports = sequelize;
