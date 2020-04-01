@@ -12,8 +12,11 @@ sequelize.sync()
 let PORT = 3001
 
 app.use(express.json());
+app.use(require('./middleware/header'))
+
 
 app.use('/user', user)
+
 app.use('/poll', poll)
 
 app.listen(PORT, () => {
