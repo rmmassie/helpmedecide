@@ -5,22 +5,18 @@ module.exports = function (sequelize, DataTypes) {
             allowNull: false,
             unique: true
         },
-        
         passwordhash: {
             type: DataTypes.STRING,
             allowNull: false
         },
-
         pollCount: {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-
         responseCount: {
             type: DataTypes.INTEGER,
             allowNull: true
         },
-
         rank: {
             type: DataTypes.INTEGER,
             allowNull: true
