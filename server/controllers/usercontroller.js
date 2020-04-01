@@ -12,6 +12,7 @@ router.post('/createuser', function (req, res) {
     const pollCount = req.body.user.pollCount;
     const responseCount = req. body.user.responseCount;
     const rank = req.body.user.rank
+    console.log(process.env.JWT_SECRET)
     User.create({
         email: email,
         passwordhash: bcrypt.hashSync(pass, 10),

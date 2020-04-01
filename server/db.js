@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const sequelize = new Sequelize('helpMeDecide', 'postgres', process.env.DBPW, {
     dialect: 'postgres'
 });
+console.log(process.env.DBPW)
 sequelize.authenticate().then(
     function() {
         console.log('Database Connection Established');
