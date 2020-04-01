@@ -5,6 +5,8 @@ const sequelize = require('./db')
 const user = require('./controllers/usercontroller')
 const poll = require('./controllers/pollcontroller')
 
+//test this
+
 sequelize.sync()
 
 let PORT = 3001
