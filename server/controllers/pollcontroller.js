@@ -15,11 +15,12 @@ router.post('/new', (req, res) => {
     tokenInfo = jwt.decode(req.body.token, process.env.JWT_SECRET)
        
     const pollFromRequest = {
-        userId: tokenInfo.id,
-        //
-        typeId: 1,
+       // userId: tokenInfo.id,
         //THIS NEEDS TO BE AN ARRAY. FIX THE POLL.JS MODEL with DataTypes.ARRAY?
-        tags: ['programming', 'react'],
+        //tags: ['programming', 'react'],
+        userId: req.body.userId,
+        typeId: req.body.typeId,
+        tags: req.body.tags,
         question: req.body.question,
         solution1: req.body.answer1,
         solution2: req.body.answer2
@@ -36,4 +37,4 @@ router.post('/new', (req, res) => {
         error: err
     }))
 });
-module.exports = router;
+module.exports = router; 
