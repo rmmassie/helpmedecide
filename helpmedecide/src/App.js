@@ -4,6 +4,7 @@ import Register from './components/Login/register'
 import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
 import Home from './components/Home/Home'
+import NewPoll2 from './components/MakePoll/NewPoll2'
 
 
 class App extends React.Component {
@@ -64,8 +65,14 @@ class App extends React.Component {
       );
     } else if (this.state.step === "Authed") {
       return (
-        <div className="App">
+        //ALL OF THE FUNCTIONALLITY HAPPENS HERE
+
+        //NAVBAR
+
+        <div className="Main">
+          {/* HOME CAN BE CLEANED UP */}
         <Home logout={this.stepLogout}/>
+        <NewPoll2 />
         </div>
     )
     }

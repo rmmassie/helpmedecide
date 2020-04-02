@@ -10,3 +10,7 @@
 .App img {
   width: 25vw;
 }
+
+.main {
+  display: flex;
+}

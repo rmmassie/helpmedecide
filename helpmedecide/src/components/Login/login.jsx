@@ -43,10 +43,11 @@ class Login extends React.Component {
 fetch("http://localhost:3001/user/login", requestOptions)
   .then(response => response.json())
   .then(result => {
+    console.log(result)
     try {
       localStorage.setItem('session', result.sessionToken);
-      console.log('Session Token Saved in Local Storage')
-     this.props.authed()
+      
+      this.props.authed()
     } catch(error) {
       console.error(error);
     }

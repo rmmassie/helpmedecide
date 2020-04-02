@@ -27,6 +27,7 @@ class Home extends React.Component {
              <h3>From here we'll build out the Polling Portion of the App</h3>
 
              <h4>When you click the logout button below, the localStorage will be flushed and the session will be closed.</h4>
+             {/* <OpenPolls /> */}
              <Button
             type="submit"
             fullWidth

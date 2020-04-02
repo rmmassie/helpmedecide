@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sequelize = require('../db');
 const Poll = sequelize.import('../models/poll')
+const jwt = require('jsonwebtoken');
 
 router.get('/', (req, res) => {
     Poll.findAll()
@@ -10,18 +11,27 @@ router.get('/', (req, res) => {
         error: err
 }))
 })
-router.post('/', (req, res) => {
+router.post('/new', (req, res) => {
+    tokenInfo = jwt.decode(req.body.token, process.env.JWT_SECRET)
+       
     const pollFromRequest = {
-        userId: req.body.userId,
-        typeId: req.body.typeId,
-        tags: req.body.tags,
+        userId: tokenInfo.id,
+        //
+        typeId: 1,
+        //THIS NEEDS TO BE AN ARRAY. FIX THE POLL.JS MODEL with DataTypes.ARRAY?
+        tags: ['programming', 'react'],
         question: req.body.question,
-        solution1: req.body.solution1,
-        solution2: req.body.solution2
+        solution1: req.body.answer1,
+        solution2: req.body.answer2
     }
-    console.log(req)
+    
+    
+    // console.log(req)
     Poll.create(pollFromRequest)
-    .then(poll => res.status(200).json(poll))
+    .then(poll => {
+
+        res.status(200).json(poll)
+    })
     .catch(err => res.json ({
         error: err
     }))
