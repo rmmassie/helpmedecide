@@ -7,13 +7,16 @@ const poll = require('./controllers/pollcontroller')
 
 //test this
 
-sequelize.sync()
+sequelize.sync() //{force:true}
 
 let PORT = 3001
 
 app.use(express.json());
+app.use(require('./middleware/header'))
+
 
 app.use('/user', user)
+app.use(require('./middleware/stalePoll'))
 app.use('/poll', poll)
 
 app.listen(PORT, () => {

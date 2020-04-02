@@ -7,16 +7,19 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.INTEGER,
         },
         tags: {
-            type: DataTypes.STRING,
+            type: DataTypes.ARRAY(DataTypes.STRING),
         },
         question: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(500),
         },
         solution1: {
             type: DataTypes.STRING,
         },
         solution2: {
             type: DataTypes.STRING,
+        },
+        changedState: {
+            type: DataTypes.BOOLEAN,
         }
     })
     return Poll;
