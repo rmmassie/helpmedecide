@@ -26,38 +26,42 @@ class OpenPoll extends React.Component {
        .catch(error => console.log('error', error))
 
 
-    //    let pollArray = []
-    //    .then(result => {
-    //     for (i=0, i < result.length, i++) {
-    //     let pollObj = {
-    //         question: result[i].dataValues.question,
-    //         tags: result[i].dataValues.tags,
-    //         solution1: result[i].dataValues.solution1,
-    //         solution2: result[i].dataValues.solution2
-    //     }
-    //         pollArray.push(pollObj)
-    //     }
-    //     })  .catch(err => console.log(err))
+        let pollArray = []
+        .then(result => {
+        for (i=0, i < result.length, i++) {
+            let pollObj = {
+            question: result[i].dataValues.question,
+            tags: result[i].dataValues.tags,
+            solution1: result[i].dataValues.solution1,
+            solution2: result[i].dataValues.solution2
+        }
+            pollArray.push(pollObj)
+       }
+       })  .catch(err => console.log(err))
 
-    }
-
-
-    // pollMapper = () => {
-    //     return this.props.polls.map((poll, index) => {
-    //         return(
-    //         <tr key={index}>
-    //         <th scope = "row">{poll.id}</th>
-    //         <td>{poll.tag}</td>
-    //         <td>{poll.question}</td>
-    //         <td>{poll.solution1}</td>
-    //         <td>{poll.solution2}</td>
-    //         </tr>
-    //         )
-    //     })
-    // }
-
-
-
+       render() {
+        {
+        pollObj.map(function(poll, index)
+            {
+                return (
+                    <div className="active container">
+                    <TableRow key={index}>
+                        <TableCell >{poll.tags}</TableCell>
+                    </TableRow>
+                     <TableRow key={index}>
+                        <TableCell >{poll.question}</TableCell>
+                    </TableRow>
+                    <TableRow key={index}>
+                        <TableCell >{poll.solution1}</TableCell>
+                    </TableRow>
+                    <TableRow key={index}>
+                        <TableCell >{poll.solution2}</TableCell>
+                    </TableRow>
+                    </div>
+                    )
+                })
+            }};
+        
     render() {
         return (
         <div className="view">
@@ -72,24 +76,13 @@ class OpenPoll extends React.Component {
                 onClick={this.getActive}
                 > Submit
             </Button>
-            {/* <Table striped>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th>Tags</th>
-                    <th>Question</th>
-                    <th>Solution1</th>
-                    <th>Solution2</th>
-                </tr>
-            </thead>
-            <tbody>
-               {this.pollMapper} 
-            </tbody>
-            </Table> */}
+            
             </div>
         </div>
         )}
+    }
 }
+
 
 
 
