@@ -17,6 +17,9 @@ module.exports = (sequelize, DataTypes) => {
         },
         solution2: {
             type: DataTypes.STRING,
+        },
+        changedState: {
+            type: DataTypes.BOOLEAN,
         }
     })
     return Poll;

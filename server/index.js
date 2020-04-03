@@ -16,7 +16,7 @@ app.use(require('./middleware/header'))
 
 
 app.use('/user', user)
-
+app.use(require('./middleware/stalePoll'))
 app.use('/poll', poll)
 
 app.listen(PORT, () => {
