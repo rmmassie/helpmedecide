@@ -18,3 +18,10 @@ form {
     height: 25vh;
     width: auto;
   }
+
+  .pollcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }

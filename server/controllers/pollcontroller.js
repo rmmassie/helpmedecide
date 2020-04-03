@@ -16,22 +16,17 @@ router.post('/new', (req, res) => {
        
     const pollFromRequest = {
         userId: tokenInfo.id,
-        //
+        //Make this a request from the list of possible polls
         typeId: 1,
-        // functionality for user to edit tags
         tags: ['programming', 'react'],
         question: req.body.question,
         solution1: req.body.answer1,
         solution2: req.body.answer2,
         changedState: true
     }
-    
-    
-    // console.log(req)
     Poll.create(pollFromRequest)
     .then(poll => {
-
-        res.status(200).json(poll)
+       res.status(200).json(poll)
     })
     .catch(err => res.json ({
         error: err

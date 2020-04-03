@@ -1,5 +1,6 @@
 import React from 'react';
 import './Home.css'
+import OpenPolls from '../OpenPolls/OpenPolls'
 import Button from '@material-ui/core/Button';
 
 class Home extends React.Component {
@@ -17,18 +18,10 @@ class Home extends React.Component {
     }
 
   render() {
-    let token = localStorage.getItem('session')
+    
     return (
         <div className="home">
-            <h1>Awesome! You're logged into the main part of the app</h1>
-            <h4>Your Hashed Session token is {token}</h4>
-           
-             <img src="/logo1.png" alt=""/>
-             <h3>From here we'll build out the Polling Portion of the App</h3>
-
-             <h4>When you click the logout button below, the localStorage will be flushed and the session will be closed.</h4>
-             {/* <OpenPolls /> */}
-             <Button
+          <Button
             type="submit"
             fullWidth
             variant="contained"
@@ -38,6 +31,10 @@ class Home extends React.Component {
           >
             Sign Out
           </Button>
+        <div className="pollcontainer">
+        <OpenPolls />
+        <OpenPolls />
+        </div>
         </div>
     )
 }

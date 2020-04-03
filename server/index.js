@@ -7,7 +7,7 @@ const poll = require('./controllers/pollcontroller')
 
 //test this
 
-sequelize.sync({}) //{force:true}
+sequelize.sync() //{force:true}
 
 let PORT = 3001
 

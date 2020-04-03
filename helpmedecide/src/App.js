@@ -73,8 +73,8 @@ class App extends React.Component {
         <div className="Main">
           {/* HOME CAN BE CLEANED UP */}
         <Home logout={this.stepLogout}/>
-        <NewPoll2 />
-        <OpenPolls />
+        {/* <NewPoll2 /> */}
+        
         </div>
     )
     }
