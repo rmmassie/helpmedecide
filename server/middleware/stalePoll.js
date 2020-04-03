@@ -10,7 +10,7 @@ module.exports = function(res, req, next) {
         for (i = 0; i < result.length; i++){
             //Change OffsetDays to modify how long polls stay fresh
 
-            let offsetDays = 2
+            let offsetDays = .042
             let offset = offsetDays * 24 * 60 * 60 * 1000;
             let timeNow = Date.now()
             let staleTime = timeNow-offset;
