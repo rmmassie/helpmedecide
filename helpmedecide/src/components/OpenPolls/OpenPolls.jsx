@@ -22,45 +22,41 @@ class OpenPoll extends React.Component {
     getActive() {
         fetch('http://localhost:3001/poll')
        .then(response => response.json())
-       .then(result =>console.log(result))
-       .catch(error => console.log('error', error))
-
-
+       .then(result => {
         let pollArray = []
-        .then(result => {
         for (i=0, i < result.length, i++) {
             let pollObj = {
             question: result[i].dataValues.question,
             tags: result[i].dataValues.tags,
             solution1: result[i].dataValues.solution1,
             solution2: result[i].dataValues.solution2
-        }
-            pollArray.push(pollObj)
-       }
-       })  .catch(err => console.log(err))
-
-       render() {
-        {
-        pollObj.map(function(poll, index)
-            {
-                return (
-                    <div className="active container">
-                    <TableRow key={index}>
-                        <TableCell >{poll.tags}</TableCell>
-                    </TableRow>
-                     <TableRow key={index}>
-                        <TableCell >{poll.question}</TableCell>
-                    </TableRow>
-                    <TableRow key={index}>
-                        <TableCell >{poll.solution1}</TableCell>
-                    </TableRow>
-                    <TableRow key={index}>
-                        <TableCell >{poll.solution2}</TableCell>
-                    </TableRow>
-                    </div>
-                    )
-                })
-            }};
+            }
+        pollArray.push(pollObj)
+        }    
+    }).catch(err => console.log(err))
+    }
+    //    render() {
+        
+    //     pollObj.map(function(poll, index)
+    //         {
+    //             return (
+    //                 <div className="active container">
+    //                 <TableRow key={index}>
+    //                     <TableCell >{poll.tags}</TableCell>
+    //                 </TableRow>
+    //                  <TableRow key={index}>
+    //                     <TableCell >{poll.question}</TableCell>
+    //                 </TableRow>
+    //                 <TableRow key={index}>
+    //                     <TableCell >{poll.solution1}</TableCell>
+    //                 </TableRow>
+    //                 <TableRow key={index}>
+    //                     <TableCell >{poll.solution2}</TableCell>
+    //                 </TableRow>
+    //                 </div>
+    //                 )
+    //             })
+    //         }};
         
     render() {
         return (
