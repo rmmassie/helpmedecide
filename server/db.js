@@ -12,4 +12,4 @@ sequelize.authenticate().then(
         console.log('No Database Connection', err);
     }
 )
-module.exports = sequelize;
+module.exports = sequelize; 
