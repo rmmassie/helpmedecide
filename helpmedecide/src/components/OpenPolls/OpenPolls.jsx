@@ -1,9 +1,12 @@
 import React from 'react';
 import './OpenPolls.css';
 import Table from '@material-ui/core/Table';
-import Button from '@material-ui/core/Button';
-import TableRow from '@material-ui/core/TableRow';
+import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 class OpenPoll extends React.Component {
     constructor(props) {
@@ -40,8 +43,11 @@ class OpenPoll extends React.Component {
           
           return ( 
               <div>
-                  <h4>Active Polls</h4>
+                  <TableContainer component={Paper}>
+                  <TableHead><h4>Active Polls</h4></TableHead>
+                  <TableBody>
                   <Table>
+                
                   {
                   this.state.polls.map(function(poll, index)
                       {
@@ -49,6 +55,8 @@ class OpenPoll extends React.Component {
                       })
                   }
                   </Table>
+                  </TableBody>
+                  </TableContainer>
               </div>
           )
       } else 
