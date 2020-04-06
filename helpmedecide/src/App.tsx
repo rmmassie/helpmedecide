@@ -4,8 +4,7 @@ import Register from './components/Login/register'
 import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
 import Home from './components/Home/Home'
-import NewPoll2 from './components/MakePoll/NewPoll2'
-import OpenPolls from './components/OpenPolls/OpenPolls'
+
 
 interface Props {
 
