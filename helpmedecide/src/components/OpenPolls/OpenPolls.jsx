@@ -1,6 +1,7 @@
 import React from 'react';
 import './OpenPolls.css';
 import Table from '@material-ui/core/Table';
+<<<<<<< HEAD
 import TableRow from '@material-ui/core/TableRow';
 import TableCell from '@material-ui/core/TableCell';
 import Button from '@material-ui/core/Button';
@@ -11,6 +12,14 @@ import Typography from '@material-ui/core/Typography';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+=======
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+>>>>>>> a46547f9d8ef24ca69e0ac8b855e12e43add9378
 
 class OpenPoll extends React.Component {
     constructor(props) {
@@ -47,6 +56,7 @@ class OpenPoll extends React.Component {
         // const  {classes, item}  = this.props;
           return ( 
               <div>
+<<<<<<< HEAD
                   <h4>Active Polls</h4>
                   <ExpansionPanel>
                       <ExpansionPanelSummary
@@ -55,7 +65,13 @@ class OpenPoll extends React.Component {
                       aria-controls="additional-actions1-content"
                       id="additional-actions1-header"
                       >
+=======
+                  <TableContainer component={Paper}>
+                  <TableHead><h4>Active Polls</h4></TableHead>
+                  <TableBody>
+>>>>>>> a46547f9d8ef24ca69e0ac8b855e12e43add9378
                   <Table>
+                
                   {
                       this.state.polls.map(function(poll, index)
                       {
@@ -63,6 +79,7 @@ class OpenPoll extends React.Component {
                       })
                   }
                   </Table>
+<<<<<<< HEAD
                   </ExpansionPanelSummary>
                     <FormControlLabel
                     aria-label="Acknowledge"
@@ -84,6 +101,10 @@ class OpenPoll extends React.Component {
                           </Typography>
                       </ExpansionPanelDetails>
                   </ExpansionPanel>
+=======
+                  </TableBody>
+                  </TableContainer>
+>>>>>>> a46547f9d8ef24ca69e0ac8b855e12e43add9378
               </div>
           )
       } else 
