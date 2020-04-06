@@ -7,12 +7,19 @@ import Home from './components/Home/Home'
 import NewPoll2 from './components/MakePoll/NewPoll2'
 import OpenPolls from './components/OpenPolls/OpenPolls'
 
+interface Props {
 
-class App extends React.Component {
-  constructor(props) {
+}
+
+interface State {
+  step: string
+}
+
+class App extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      session: null,
+      // session: null,
       step: "Splash" 
     }
     this.stepLogin = this.stepLogin.bind(this);
@@ -21,25 +28,25 @@ class App extends React.Component {
     this.stepLogout = this.stepLogout.bind(this);
   }
 
-  stepLogin() {
+  stepLogin(): void {
     this.setState({
       step: "Login"
     })
   }
 
-  stepRegister() {
+  stepRegister(): void {
     this.setState({
       step: "Register"
     })
   }
 
-  stepLoggedIn() {
+  stepLoggedIn(): void {
     this.setState({
       step: "Authed"
     })
   }
 
-  stepLogout() {
+  stepLogout(): void {
     this.setState({
       step: "Splash"
     })

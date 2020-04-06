@@ -2,13 +2,17 @@ import React from 'react';
 import './Splash.css';
 import Button from '@material-ui/core/Button';
 
-// type AcceptedProps = {
-//   testProp: string,
-//   optionalProp?: string
-// };
+interface Props {
+  login: any,
+  register: any  
+}
 
-class Splash extends React.Component {
-  constructor(props) {
+interface State {
+  
+}
+
+class Splash extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
     }
