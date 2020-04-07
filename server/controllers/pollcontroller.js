@@ -5,14 +5,28 @@ const Poll = sequelize.import('../models/poll');
 const jwt = require('jsonwebtoken');
 
 router.get('/', (req, res) => {
-    Poll.findAll()
+    Poll.findAll((
+        {where: {},
+        order: [
+            ['id', 'ASC']
+        ]}))
     .then(poll => res.status(200).json(poll))
     .catch(err => res.status(500).json ({
         error: err
 }))
 })
 
-
+router.get('/:pollId', (req, res) => {
+    let pollId = req.params.pollId
+    Poll.findOne(
+        {
+            where: {id: pollId},
+        })
+    .then(poll => res.status(200).json(poll))
+    .catch(err => res.status(500).json ({
+        error: err
+}))
+})
 
 // ROUTE TO POST NEW POLL
 router.post('/new', (req, res) => {
@@ -37,23 +51,26 @@ router.post('/new', (req, res) => {
     }))
 });
 
-
-
 //  ROUTE FOR ACTIVE POLLS
 router.get('/active', (req,res) => {
     Poll.findAll(
-        {where: {changedState: true}})
+        {where: {changedState: true},
+        order: [
+            ['id', 'ASC']
+        ]})
     .then(poll => res.status(200).json(poll))
     .catch(err => res.json ({
     error: err
 })
 )})
 
-
 // ROUTES FOR CLOSED POLL
     router.get('/closed', (req,res) => {
-        Poll.findAll(       
-            {where: {changedState: false}})
+        Poll.findAll(
+            {where: {changedState: false},
+            order: [
+                ['id', 'ASC']
+            ]})
         .then(poll => res.status(200).json(poll))
         .catch(err => res.json ({
             error: err

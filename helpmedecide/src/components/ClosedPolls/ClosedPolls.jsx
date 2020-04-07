@@ -1,5 +1,5 @@
 import React from 'react';
-import './OpenPolls.css';
+import './ClosedPolls.css';
 import Vote from '../Vote/Vote'
 import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
@@ -13,7 +13,7 @@ import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-class OpenPoll extends React.Component {
+class ClosedPoll extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -73,7 +73,7 @@ class OpenPoll extends React.Component {
         
           return ( 
               <div>
-                  <h4>Active Polls</h4>
+                  <h4>Closed Polls</h4>
                   <Table>
                     {
                       this.state.polls.map(function(poll, index)
@@ -84,15 +84,16 @@ class OpenPoll extends React.Component {
                                         {poll.question}, {poll.tags}
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
-                                        
-                                            <TableCell>{poll.solution1}
+                                            <h2>Voting Has Closed</h2>
+                                            
                                             <RadioGroup aria-label="gender" name="Answer" value={index} >
                                                 <FormControlLabel value={poll.solution1} control={<Radio />} label={poll.solution1} />
                                                 <FormControlLabel value={poll.solution2} control={<Radio />} label={poll.solution2} />
                                             </RadioGroup>
-                                            </TableCell>
+                                            <Button variant="contained" color="secondary" onClick={() => this.voteHandler(index) }>See Results!</Button>
+                                           
                                        
-                                            <Button variant="contained" color="secondary" onClick={() => this.voteHandler(index) }>Vote!</Button>
+                                            
                                         </ExpansionPanelDetails>
                                         </ExpansionPanel>
                                         </TableRow>
@@ -111,4 +112,4 @@ class OpenPoll extends React.Component {
       }
     }
 
-export default OpenPoll
+export default ClosedPoll

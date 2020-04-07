@@ -1,6 +1,7 @@
 import React from 'react';
 import './Home.css'
 import OpenPolls from '../OpenPolls/OpenPolls'
+import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Button from '@material-ui/core/Button';
 
 class Home extends React.Component {
@@ -33,7 +34,8 @@ class Home extends React.Component {
           </Button>
         <div className="pollcontainer">
         <OpenPolls />
-        <OpenPolls />
+        {/* <ClosedPolls /> */}
+       
         </div>
         </div>
     )
