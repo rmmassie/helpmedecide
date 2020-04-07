@@ -91,20 +91,12 @@ class OpenPoll extends React.Component {
                                                 <FormControlLabel value={poll.solution2} control={<Radio />} label={poll.solution2} />
                                             </RadioGroup>
                                             </TableCell>
-                                            {/* <TableCell>{poll.solution2}
-                                            <FormControlLabel
-                                                aria-label="Acknowledge"
-                                                onClick={(event) => event.stopPropagation()}
-                                                // onFocus={(event) => event.stopPropagation()}
-                                                control={<Checkbox />}
-                                                // label="second checkbox"
-                                                />
-                                            </TableCell> */}
-                                            <Button variant="contained" color="secondary">Vote!</Button>
+                                       
+                                            <Button variant="contained" color="secondary" onClick={() => this.voteHandler(index) }>Vote!</Button>
                                         </ExpansionPanelDetails>
                                         </ExpansionPanel>
                                         </TableRow>
-                      })
+                      }, this)
                   }
                   </Table>
               </div>
