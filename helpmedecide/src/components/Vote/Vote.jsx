@@ -13,6 +13,7 @@ class Vote extends React.Component {
         solution2: ""
     }
     this.clearVote = this.clearVote.bind(this)
+    this.voteHandler = this.voteHandler.bind(this)
 }
 
   componentDidMount() {
@@ -35,6 +36,12 @@ clearVote() {
     this.props.pollHandler()
 }
 
+voteHandler(choice) {
+    let pollId = this.props.pollId + 1
+    
+
+}
+
 render() {
     if (this.state.havePoll) {
         return (
@@ -44,11 +51,11 @@ render() {
                <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
                <div>
                     <h3>{this.state.solution1}</h3>
-                    <Button variant="contained" color="secondary">Vote Option 1</Button>
+                    <Button variant="contained" color="secondary" onClick={() => {this.voteHandler(1)}}>Vote Option 1</Button>
                </div>
                <div>
                     <h3>{this.state.solution2}</h3>
-                    <Button variant="contained" color="secondary">Vote Option 2</Button>
+                    <Button variant="contained" color="secondary"onClick={() => {this.voteHandler(2)}}>Vote Option 2</Button>
                </div>
                <img src="/pieChart.png" alt=""/>
                <p>Image is just a place Holder.</p>

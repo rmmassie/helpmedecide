@@ -4,12 +4,24 @@ import Register from './components/Login/register'
 import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
 import Home from './components/Home/Home'
+<<<<<<< HEAD:helpmedecide/src/App.js
+=======
 
-class App extends React.Component {
-  constructor(props) {
+>>>>>>> d79321de78703481b47e38b732743111f13274d7:helpmedecide/src/App.tsx
+
+interface Props {
+
+}
+
+interface State {
+  step: string
+}
+
+class App extends React.Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
-      session: null,
+      // session: null,
       step: "Splash" 
     }
     this.stepLogin = this.stepLogin.bind(this);
@@ -18,25 +30,25 @@ class App extends React.Component {
     this.stepLogout = this.stepLogout.bind(this);
   }
 
-  stepLogin() {
+  stepLogin(): void {
     this.setState({
       step: "Login"            
     })
   }
 
-  stepRegister() {
+  stepRegister(): void {
     this.setState({
       step: "Register"
     })
   }
 
-  stepLoggedIn() {
+  stepLoggedIn(): void {
     this.setState({
       step: "Authed"
     })
   }
 
-  stepLogout() {
+  stepLogout(): void {
     this.setState({
       step: "Splash"
     })

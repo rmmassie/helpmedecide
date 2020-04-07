@@ -22,7 +22,10 @@ class OpenPoll extends React.Component {
            pollId: null
         }
         this.voteHandler = this.voteHandler.bind(this)
+<<<<<<< HEAD
         this.pollHandler = this.pollHandler.bind(this)
+=======
+>>>>>>> d79321de78703481b47e38b732743111f13274d7
        
     }
 
@@ -62,6 +65,7 @@ class OpenPoll extends React.Component {
            vote: false,
            pollId: null
         })
+<<<<<<< HEAD
     }
 
     render() {
@@ -71,6 +75,19 @@ class OpenPoll extends React.Component {
             )
         } else if (this.state.polls !== undefined && this.state.vote === false) {
         
+=======
+        console.log(this.state.polls)
+        }).catch(err => console.log(err))
+    }
+
+    voteHandler(event) {
+        console.log(event.target.value)
+    }
+
+    render() {
+        if (this.state.polls !== undefined && this.state.vote === false) {
+        // const  {classes, item}  = this.props;
+>>>>>>> d79321de78703481b47e38b732743111f13274d7
           return ( 
               <div>
                   <h4>Active Polls</h4>
@@ -84,23 +101,53 @@ class OpenPoll extends React.Component {
                                         {poll.question}, {poll.tags}
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
+<<<<<<< HEAD
                                         
+=======
+                                            {/* <Typography>
+                                                Check one of the options!
+                                            </Typography> */}
+>>>>>>> d79321de78703481b47e38b732743111f13274d7
                                             <TableCell>{poll.solution1}
                                             <RadioGroup aria-label="gender" name="Answer" value={index} >
                                                 <FormControlLabel value={poll.solution1} control={<Radio />} label={poll.solution1} />
                                                 <FormControlLabel value={poll.solution2} control={<Radio />} label={poll.solution2} />
                                             </RadioGroup>
                                             </TableCell>
+<<<<<<< HEAD
                                        
                                             <Button variant="contained" color="secondary" onClick={() => this.voteHandler(index) }>Vote!</Button>
                                         </ExpansionPanelDetails>
                                         </ExpansionPanel>
                                         </TableRow>
                       }, this)
+=======
+                                            {/* <TableCell>{poll.solution2}
+                                            <FormControlLabel
+                                                aria-label="Acknowledge"
+                                                onClick={(event) => event.stopPropagation()}
+                                                // onFocus={(event) => event.stopPropagation()}
+                                                control={<Checkbox />}
+                                                // label="second checkbox"
+                                                />
+                                            </TableCell> */}
+                                            <Button variant="contained" color="secondary">Vote!</Button>
+                                        </ExpansionPanelDetails>
+                                        </ExpansionPanel>
+                                        </TableRow>
+                      })
+>>>>>>> d79321de78703481b47e38b732743111f13274d7
                   }
                   </Table>
               </div>
           )
+<<<<<<< HEAD
+=======
+        } else if (this.state.polls !== undefined && this.state.vote === true) {
+            return (
+                <Vote pollId={this.state.pollId} />
+            )
+>>>>>>> d79321de78703481b47e38b732743111f13274d7
         } else {
           return (
             <div>
