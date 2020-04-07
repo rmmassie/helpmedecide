@@ -25,7 +25,9 @@ class Vote extends React.Component {
             question: result.question,
             solution1: result.solution1,
             solution2: result.solution2,
-            havePoll: true
+            havePoll: true,
+            hasVoted: false,
+            vote: null
         })
         console.log(this.state.question)
     })
@@ -37,13 +39,34 @@ clearVote() {
 }
 
 voteHandler(choice) {
+    let token = localStorage.getItem('session')
     let pollId = this.props.pollId + 1
-    
+    let myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/json");
 
-}
+        let body = JSON.stringify({"session":token,"vote":choice});
+
+        var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: body,
+        redirect: 'follow'
+        };
+
+    fetch(`http://localhost:3001/response/${pollId}`, requestOptions)
+    .then(response => response.json())
+    .then(result => {
+        this.setState({
+            hasVoted: true,
+            vote: result.response
+        })
+        console.log(result)
+    })
+    .catch(error => console.log('error', error));
+    }
 
 render() {
-    if (this.state.havePoll) {
+    if (this.state.havePoll && !this.state.hasVoted) {
         return (
             <div className="home">
                 <h2>POLL ID is {this.props.pollId + 1}</h2>
@@ -55,7 +78,7 @@ render() {
                </div>
                <div>
                     <h3>{this.state.solution2}</h3>
-                    <Button variant="contained" color="secondary"onClick={() => {this.voteHandler(2)}}>Vote Option 2</Button>
+                    <Button variant="contained" color="secondary" onClick={() => {this.voteHandler(2)}}>Vote Option 2</Button>
                </div>
                <img src="/pieChart.png" alt=""/>
                <p>Image is just a place Holder.</p>
@@ -63,7 +86,37 @@ render() {
 
             </div>
             )
-    } else {
+    } else if (this.state.havePoll && this.state.hasVoted) {
+        if (this.state.vote === 1) {
+            return (
+                <div className="home">
+                    <h2>POLL ID is {this.props.pollId + 1}</h2>
+                   <h2>{this.state.question}</h2>
+                   <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
+                   <p><b>You voted for {this.state.solution1}</b></p>
+                   <img src="/pieChart.png" alt=""/>
+                   <p>Image is just a place Holder.</p>
+                   <Button variant="contained" color="primary" onClick={this.clearVote}>Back to Polls</Button>
+    
+                </div>
+                )
+        } else if (this.state.vote === 2) {
+            return (
+                <div className="home">
+                    <h2>POLL ID is {this.props.pollId + 1}</h2>
+                   <h2>{this.state.question}</h2>
+                   <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
+                   <p><b>You voted for {this.state.solution2}</b></p>
+                   <img src="/pieChart.png" alt=""/>
+                   <p>Image is just a place Holder.</p>
+                   <Button variant="contained" color="primary" onClick={this.clearVote}>Back to Polls</Button>
+    
+                </div>
+                )
+        }
+     
+    
+        } else {
         return (
             <div className="home">
                <LinearProgress />

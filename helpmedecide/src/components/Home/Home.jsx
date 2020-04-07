@@ -34,7 +34,7 @@ class Home extends React.Component {
           </Button>
         <div className="pollcontainer">
         <OpenPolls />
-        {/* <ClosedPolls /> */}
+        <ClosedPolls />
        
         </div>
         </div>

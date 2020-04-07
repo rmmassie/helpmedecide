@@ -12,9 +12,27 @@ router.get('/', (req, res) => {
 });
 
 //SEND A USER RESPONSE INTO THE DATABASE
-router.post('/:pollID', (req, res) => {
-    console.log(req)
-    res.send('This is the POST A RESPONSE Route')
+router.post('/:pollID/', (req, res) => {
+    console.log("Poll is ", req.params.pollID)
+    console.log("Session is ",req.body.session)
+    console.log("Vote is Option ", req.body.vote)
+    let userId = jwt.decode(req.body.session, process.env.JWT_SECRET)
+    console.log("User Id is :", userId.id)
+    try {
+        Response.create({
+          pollId: req.params.pollID,
+          userId: userId.id,
+          response: req.body.vote
+        })
+    }
+    catch {
+        res.send('There is an error with user ID: ', userId.id)
+    }
+    res.send({
+        message: "Vote is Counted",
+        user: userId.id,
+        response: req.body.vote
+    })
 });
 
 //GET RESPONSES FROM A GIVEN POLL

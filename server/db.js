@@ -1,7 +1,8 @@
 require('dotenv').config();
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('helpMeDecide', 'postgres', process.env.DBPW, {
-    dialect: 'postgres'
+    dialect: 'postgres',
+    logging: false //remove for verbose logging in console
 });
 console.log(process.env.DBPW)
 sequelize.authenticate().then(

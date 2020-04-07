@@ -85,11 +85,7 @@ class ClosedPoll extends React.Component {
                                         </ExpansionPanelSummary>
                                         <ExpansionPanelDetails>
                                             <h2>Voting Has Closed</h2>
-                                            
-                                            <RadioGroup aria-label="gender" name="Answer" value={index} >
-                                                <FormControlLabel value={poll.solution1} control={<Radio />} label={poll.solution1} />
-                                                <FormControlLabel value={poll.solution2} control={<Radio />} label={poll.solution2} />
-                                            </RadioGroup>
+                                          
                                             <Button variant="contained" color="secondary" onClick={() => this.voteHandler(index) }>See Results!</Button>
                                            
                                        
