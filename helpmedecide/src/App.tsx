@@ -4,10 +4,6 @@ import Register from './components/Login/register'
 import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
 import Home from './components/Home/Home'
-<<<<<<< HEAD:helpmedecide/src/App.js
-=======
-
->>>>>>> d79321de78703481b47e38b732743111f13274d7:helpmedecide/src/App.tsx
 
 interface Props {
 
