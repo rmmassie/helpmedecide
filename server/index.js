@@ -4,7 +4,7 @@ const app = express();
 const sequelize = require('./db');
 const user = require('./controllers/usercontroller');
 const poll = require('./controllers/pollcontroller');
-
+const response = require('./controllers/responsecontroller');
 //test this
 
 sequelize.sync() //{force:true}
@@ -18,6 +18,7 @@ app.use(require('./middleware/header'))
 app.use('/user', user)
 app.use(require('./middleware/stalePoll'))
 app.use('/poll', poll)
+app.use('/response', response)
 
 app.listen(PORT, () => {
     console.log(`Server Listening on ${PORT}`)
