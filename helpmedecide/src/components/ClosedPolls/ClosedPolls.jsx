@@ -28,7 +28,7 @@ class ClosedPoll extends React.Component {
 
     componentDidMount() {
         let pollArray = []
-        fetch('http://localhost:3001/poll/closed')
+        fetch('http://localhost:3001/poll/status/closed')
         .then(response => response.json())
         .then(result => {        
             for (let i=0; i < result.length; i++) {

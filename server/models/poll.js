@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
         question: {
-            type: DataTypes.STRING(500),
+            type: DataTypes.STRING,
         },
         solution1: {
             type: DataTypes.STRING,

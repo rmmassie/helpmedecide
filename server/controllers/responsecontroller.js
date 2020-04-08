@@ -7,8 +7,16 @@ const jwt = require('jsonwebtoken');
 
 //FETCH ALL RESPONSES from A GIVEN POLL
 router.get('/', (req, res) => {
-    console.log(req)
-    res.send('This is the GET ALL RESPONSES Route')
+    Response.findAll((
+        {where: {},
+        order: [
+            ['id', 'ASC']
+        ]}))
+    .then(poll => res.status(200).json(poll))
+    .catch(err => res.status(500).json ({
+        error: err
+}))
+  
 });
 
 //SEND A USER RESPONSE INTO THE DATABASE
@@ -35,15 +43,9 @@ router.post('/:pollID/', (req, res) => {
     })
 });
 
-//GET RESPONSES FROM A GIVEN POLL
-router.get('/:pollID', (req, res) => {
-    console.log(req)
-    res.send('This is the GET RESPONSES FOR SPECIFIC POLL Route')
-});
-
 //GET POLLS & RESPONSES FROM A GIVEN USER
 router.get('/:userID', (req, res) => {
-    console.log(req)
+    
     res.send('This is the GET POLLS & RESPONSES FOR SPECIFIC USER Route')
 });
 module.exports = router; 

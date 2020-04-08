@@ -2,16 +2,12 @@
 const sequelize = require('../db');
 const Poll = sequelize.import('../models/poll');
 
-//THIS MIDDLEWARE HANDLES A POLL AGE ADJUSTMENT. Polls over {offsetDays} changedState Value is switched to FALSE to deactivate the poll.
-
 module.exports = function(res, req, next) {
+
     Poll.findAll()
     .then(result => {
         for (i = 0; i < result.length; i++){
-            //Change OffsetDays to modify how long polls stay fresh
-            //If offsetDays is set .042, it's 2 minutes
-
-            let offsetDays = 1
+            let offsetDays = 5
             let offset = offsetDays * 24 * 60 * 60 * 1000;
             let timeNow = Date.now()
             let staleTime = timeNow-offset;
@@ -19,8 +15,8 @@ module.exports = function(res, req, next) {
             let pollId = result[i].dataValues.id;
             let created = result[i].dataValues.createdAt;
             
-            // add && changedState === true
-            if (created < staleDate){
+            if (created < staleDate && result[i].dataValues.changedState === true){
+                console.log("this one is old");
                 Poll.findOne({
                     where:{
                         id: pollId
@@ -34,9 +30,9 @@ module.exports = function(res, req, next) {
                         }
                     })
                 });
-            } else if (created >= staleDate){
-               }
-            }
+            } 
+            
+        }
     next()
     })
 }

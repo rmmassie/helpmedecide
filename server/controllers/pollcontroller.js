@@ -2,30 +2,44 @@ const express = require('express');
 const router = express.Router();
 const sequelize = require('../db');
 const Poll = sequelize.import('../models/poll');
+const Response = sequelize.import('../models/response')
 const jwt = require('jsonwebtoken');
 
 router.get('/', (req, res) => {
-    Poll.findAll((
+    Poll.findAll(
         {where: {},
         order: [
             ['id', 'ASC']
-        ]}))
+        ]})
     .then(poll => res.status(200).json(poll))
     .catch(err => res.status(500).json ({
         error: err
 }))
 })
 
-router.get('/:pollId', (req, res) => {
+router.post('/:pollId', (req, res) => {
     let pollId = req.params.pollId
+    console.log(req.body.session)
+    let userId = jwt.decode(req.body.session, process.env.JWT_SECRET)
+    console.log(`Checking Prior Voting for ${userId.id} on Poll ID ${req.params.pollId}`)
     Poll.findOne(
         {
             where: {id: pollId},
         })
-    .then(poll => res.status(200).json(poll))
+    .then(poll => {
+        console.log(poll.dataValues)
+        Response.findOne({
+            where: {
+                pollId: poll.dataValues.id,
+                userId: userId.id
+            }
+        }).then(result => {
+            res.send([poll, result])
+        })
+    })
     .catch(err => res.status(500).json ({
         error: err
-}))
+    }))
 })
 
 // ROUTE TO POST NEW POLL
@@ -52,7 +66,7 @@ router.post('/new', (req, res) => {
 });
 
 //  ROUTE FOR ACTIVE POLLS
-router.get('/active', (req,res) => {
+router.get('/status/active', (req,res) => {
     Poll.findAll(
         {where: {changedState: true},
         order: [
@@ -65,12 +79,16 @@ router.get('/active', (req,res) => {
 )})
 
 // ROUTES FOR CLOSED POLL
-    router.get('/closed', (req,res) => {
+    router.get('/status/closed', (req,res) => {
+        let polltime = req.params.open
         Poll.findAll(
-            {where: {changedState: false},
+            {where: {
+                changedState: false
+            },
             order: [
                 ['id', 'ASC']
-            ]})
+            ]
+        })
         .then(poll => res.status(200).json(poll))
         .catch(err => res.json ({
             error: err

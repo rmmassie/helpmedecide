@@ -6,70 +6,92 @@ class Vote extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        havePoll: false,
-        
         question: "",
         solution1: "",
-        solution2: ""
+        solution2: "",
+        havePoll: false,
+        //DON'T HARDCODE RESPONSES
+        vote: null,
+        hasVoted: false
     }
-    this.clearVote = this.clearVote.bind(this)
     this.voteHandler = this.voteHandler.bind(this)
 }
-
-  componentDidMount() {
-    let fetchId = this.props.pollId + 1
-    fetch(`http://localhost:3001/poll/${fetchId}`)
-    .then(response => response.json())
-    .then(result => {
-        this.setState({
-            question: result.question,
-            solution1: result.solution1,
-            solution2: result.solution2,
-            havePoll: true,
-            hasVoted: false,
-            vote: null
-        })
-        console.log(this.state.question)
-    })
-    .catch(error => console.log('error', error));
-}
-
-clearVote() {
-    this.props.pollHandler()
-}
-
-voteHandler(choice) {
+ 
+//Grab the Poll Information & User Info
+    componentDidMount() {
+    let fetchId = this.props.pollId
     let token = localStorage.getItem('session')
-    let pollId = this.props.pollId + 1
     let myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
-        let body = JSON.stringify({"session":token,"vote":choice});
+    let body = JSON.stringify({"session":token});
 
-        var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: body,
-        redirect: 'follow'
-        };
-
-    fetch(`http://localhost:3001/response/${pollId}`, requestOptions)
+    var requestOptions = {
+    method: 'POST',
+    headers: myHeaders,
+    body: body,
+    redirect: 'follow'
+    };
+    fetch(`http://localhost:3001/poll/${fetchId}`, requestOptions)
     .then(response => response.json())
     .then(result => {
-        this.setState({
-            hasVoted: true,
-            vote: result.response
-        })
         console.log(result)
+        let voted
+        let vote
+        if (result[1] === null) {
+            voted = false
+            vote = null
+        } else {
+            voted = true
+            vote = result[1].response
+            
+        }
+        this.setState({
+            question: result[0].question,
+            solution1: result[0].solution1,
+            solution2: result[0].solution2,
+            havePoll: true,
+            hasVoted: voted,
+            vote: vote
+            })
     })
     .catch(error => console.log('error', error));
     }
 
+    voteHandler(choice) {
+        let token = localStorage.getItem('session')
+        let pollId = this.props.pollId + 1
+        let myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            let body = JSON.stringify({"session":token,"vote":choice});
+
+            var requestOptions = {
+            method: 'POST',
+            headers: myHeaders,
+            body: body,
+            redirect: 'follow'
+            };
+
+        fetch(`http://localhost:3001/response/${pollId}`, requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            this.setState({
+                hasVoted: true,
+                vote: result.response
+            })
+            console.log(result)
+        })
+        .catch(error => console.log('error', error));
+    }
+
 render() {
-    if (this.state.havePoll && !this.state.hasVoted) {
+    console.log(this.state)
+    
+    if (this.state.havePoll === true && this.state.hasVoted === false) {
         return (
             <div className="home">
-                <h2>POLL ID is {this.props.pollId + 1}</h2>
+                <h2>POLL ID is {this.props.pollId}</h2>
                <h2>{this.state.question}</h2>
                <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
                <div>
@@ -82,11 +104,11 @@ render() {
                </div>
                <img src="/pieChart.png" alt=""/>
                <p>Image is just a place Holder.</p>
-               <Button variant="contained" color="primary" onClick={this.clearVote}>Back to Polls</Button>
-
+               <Button variant="contained" color="primary" onClick={() => this.props.setVote(false)}>Back to Polls</Button>
+    
             </div>
             )
-    } else if (this.state.havePoll && this.state.hasVoted) {
+    } else if (this.state.havePoll === true && this.state.hasVoted === true) {
         if (this.state.vote === 1) {
             return (
                 <div className="home">
@@ -96,7 +118,7 @@ render() {
                    <p><b>You voted for {this.state.solution1}</b></p>
                    <img src="/pieChart.png" alt=""/>
                    <p>Image is just a place Holder.</p>
-                   <Button variant="contained" color="primary" onClick={this.clearVote}>Back to Polls</Button>
+                   <Button variant="contained" color="primary" onClick={() => this.props.setVote(false)}>Back to Polls</Button>
     
                 </div>
                 )
@@ -109,13 +131,12 @@ render() {
                    <p><b>You voted for {this.state.solution2}</b></p>
                    <img src="/pieChart.png" alt=""/>
                    <p>Image is just a place Holder.</p>
-                   <Button variant="contained" color="primary" onClick={this.clearVote}>Back to Polls</Button>
-    
+                   <Button variant="contained" color="primary" onClick={() => this.props.setVote(false)}>Back to Polls</Button>
+                 
                 </div>
                 )
         }
-     
-    
+        
         } else {
         return (
             <div className="home">
