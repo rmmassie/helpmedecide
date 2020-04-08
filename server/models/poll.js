@@ -10,13 +10,16 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.ARRAY(DataTypes.STRING),
         },
         question: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING(500),
         },
         solution1: {
             type: DataTypes.STRING,
         },
         solution2: {
             type: DataTypes.STRING,
+        },
+        summary: {
+            type: DataTypes.STRING(1000),
         },
         changedState: {
             type: DataTypes.BOOLEAN,

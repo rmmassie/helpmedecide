@@ -27,13 +27,14 @@ router.post('/:pollId', (req, res) => {
             where: {id: pollId},
         })
     .then(poll => {
-        console.log(poll.dataValues)
+        
         Response.findOne({
             where: {
                 pollId: poll.dataValues.id,
                 userId: userId.id
             }
         }).then(result => {
+            console.log([poll.dataValues.id, result])
             res.send([poll, result])
         })
     })
@@ -43,19 +44,22 @@ router.post('/:pollId', (req, res) => {
 })
 
 // ROUTE TO POST NEW POLL
-router.post('/new', (req, res) => {
+router.post('/new/newPoll', (req, res) => {
+    console.log("The New Poll Request Looks Like", req.body)
     tokenInfo = jwt.decode(req.body.token, process.env.JWT_SECRET)
        
     const pollFromRequest = {
         userId: tokenInfo.id,
         //Make this a request from the list of possible polls
         typeId: 1,
-        tags: ['programming', 'react'],
         question: req.body.question,
+        tags: req.body.tags,
         solution1: req.body.answer1,
         solution2: req.body.answer2,
-        //changedState: true
+        summary: req.body.summary,
+        changedState: true
     }
+    console.log("The New Pool Built Out Looks like", pollFromRequest)
     Poll.create(pollFromRequest)
     .then(poll => {
        res.status(200).json(poll)
@@ -79,21 +83,21 @@ router.get('/status/active', (req,res) => {
 )})
 
 // ROUTES FOR CLOSED POLL
-    router.get('/status/closed', (req,res) => {
-        let polltime = req.params.open
-        Poll.findAll(
-            {where: {
-                changedState: false
-            },
-            order: [
-                ['id', 'ASC']
-            ]
-        })
-        .then(poll => res.status(200).json(poll))
-        .catch(err => res.json ({
-            error: err
-        })
-        )})
-    
+router.get('/status/closed', (req,res) => {
+    let polltime = req.params.open
+    Poll.findAll(
+        {where: {
+            changedState: false
+        },
+        order: [
+            ['id', 'ASC']
+        ]
+    })
+    .then(poll => res.status(200).json(poll))
+    .catch(err => res.json ({
+        error: err
+    })
+    )})
+
 
 module.exports = router; 

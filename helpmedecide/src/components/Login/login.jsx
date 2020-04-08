@@ -14,7 +14,6 @@ import './login.css';
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    console.log(props)
     this.state = {
         email: '',
         pass: '',
@@ -43,20 +42,18 @@ class Login extends React.Component {
 fetch("http://localhost:3001/user/login", requestOptions)
   .then(response => response.json())
   .then(result => {
-    console.log(result)
-    try {
-      localStorage.setItem('session', result.sessionToken);
-      
-      this.props.authed()
-    } catch(error) {
-      console.error(error);
-    }
-    
-    //Call the SetState Prop Here to switch state to Logged In.
-
-  })
+    if ("error" in result) {
+      alert(result.error)
+    } else if (result.sessionToken !== undefined){
+      try {
+          localStorage.setItem('session', result.sessionToken);
+          this.props.authed()
+        } catch(error) {
+          console.error(error);
+        }
+      }
+    })
   .catch(error => console.log('error', error));
-    
   }
 
 render() {

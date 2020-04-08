@@ -4,6 +4,7 @@ import './Home.css'
 import OpenPolls from '../OpenPolls/OpenPolls'
 // import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Vote from '../Vote/Vote'
+import NewPoll2 from '../MakePoll/NewPoll2';
 
 
 class Home extends React.Component {
@@ -39,14 +40,16 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    
     if (this.state.vote === false) {
       //Show Active Polls
       return (
       <div className="polls">
+        
         <div className="pollcontainer">
         <OpenPolls vote={this.state.vote} setVote={this.setVote} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted} />  
         </div>
+        <NewPoll2 />
       </div>
       )}
       else if (this.state.vote === true && this.state.pollId !== null) {

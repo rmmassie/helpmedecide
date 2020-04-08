@@ -60,7 +60,7 @@ class Vote extends React.Component {
 
     voteHandler(choice) {
         let token = localStorage.getItem('session')
-        let pollId = this.props.pollId + 1
+        let pollId = this.props.pollId
         let myHeaders = new Headers();
             myHeaders.append("Content-Type", "application/json");
 
@@ -112,7 +112,7 @@ render() {
         if (this.state.vote === 1) {
             return (
                 <div className="home">
-                    <h2>POLL ID is {this.props.pollId + 1}</h2>
+                    <h2>POLL ID is {this.props.pollId}</h2>
                    <h2>{this.state.question}</h2>
                    <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
                    <p><b>You voted for {this.state.solution1}</b></p>
@@ -125,7 +125,7 @@ render() {
         } else if (this.state.vote === 2) {
             return (
                 <div className="home">
-                    <h2>POLL ID is {this.props.pollId + 1}</h2>
+                    <h2>POLL ID is {this.props.pollId}</h2>
                    <h2>{this.state.question}</h2>
                    <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
                    <p><b>You voted for {this.state.solution2}</b></p>

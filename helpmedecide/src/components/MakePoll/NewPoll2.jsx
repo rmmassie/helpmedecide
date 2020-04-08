@@ -10,7 +10,9 @@ class NewPoll2 extends React.Component {
     this.state = {
         pollQuestion: null,
         answer1: null,
-        answer2: null      
+        answer2: null, 
+        tags: null,
+        summary: null
     }
     this.pollSubmit = this.pollSubmit.bind(this)
 }
@@ -20,9 +22,12 @@ class NewPoll2 extends React.Component {
         console.log("The Question is: ", this.state.pollQuestion)
         console.log("Option 1 is: ", this.state.answer1)
         console.log("Option 2 is: ", this.state.answer2)
+        console.log("Tags: ", this.state.tags)
+        console.log("Summary is: ", this.state.summary)
 
         //REQUIRE FORM VALIDATION
         let token = localStorage.getItem('session')
+        console.log(token)
         const myHeaders = new Headers();
         myHeaders.append("Content-Type", "application/json");
 
@@ -31,7 +36,9 @@ class NewPoll2 extends React.Component {
                 "token":token,
                 "question":this.state.pollQuestion,
                 "answer1":this.state.answer1,
-                "answer2":this.state.answer2
+                "answer2":this.state.answer2,
+                "tags":[this.state.tags],
+                "summary":this.state.summary
             });
 
         var requestOptions = {
@@ -41,7 +48,7 @@ class NewPoll2 extends React.Component {
         redirect: 'follow'
         };
 
-        fetch("http://localhost:3001/poll/new", requestOptions)
+        fetch("http://localhost:3001/poll/new/newPoll", requestOptions)
         .then(response => response.json())
         .then(result => console.log(result))
         .catch(error => console.log('error', error));
@@ -70,6 +77,18 @@ class NewPoll2 extends React.Component {
                         answer2: e.target.value,
                     })
               }} placeholder="Second Option" />
+              <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
+                    console.log(e.target.value)
+                    this.setState({
+                        tags: e.target.value,
+                    })
+              }} placeholder="Tags" />
+              <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
+                    console.log(e.target.value)
+                    this.setState({
+                        summary: e.target.value,
+                    })
+              }} placeholder="summary" />
                 <Button
                     type="submit"
                     fullWidth
