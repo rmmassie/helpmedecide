@@ -1,6 +1,7 @@
 import React from 'react';
 import './OpenPolls.css';
 import Button from '@material-ui/core/Button';
+import Chip from '@material-ui/core/Chip';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -42,6 +43,8 @@ class OpenPoll extends React.Component {
     
     render() {
         if (this.state.polls !== undefined) {
+            const handleClick = () => {};
+
             return ( 
                 <>
                 <h4>Active Polls</h4>
@@ -49,6 +52,7 @@ class OpenPoll extends React.Component {
                 {
                 this.state.polls.map(function(poll)
                 {
+                console.log(poll.tags)
                 return (
                 <ExpansionPanel key={poll.id}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />} aria-label="Expand" aria-controls="additional-actions1-content" id="additional-actions1-header">
@@ -57,6 +61,14 @@ class OpenPoll extends React.Component {
                     <ExpansionPanelDetails>
                         <p>{poll.solution1} or {poll.solution2}</p><br></br>
                         <Button variant="contained" color="secondary" onClick={() => this.props.setVote(true, poll.id)}>Vote!</Button>
+                        {
+                            poll.tags.map((tag, index) => {
+                                console.log('The index is:', index, 'The tag is:', tag)
+                                return(
+                                    <Chip key={index} label={tag} onClick={handleClick}/>
+                                    )
+                            }) 
+                        }
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
                 )}, this)
