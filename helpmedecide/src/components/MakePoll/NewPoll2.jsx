@@ -49,7 +49,11 @@ class NewPoll2 extends React.Component {
 
         fetch("http://localhost:3001/poll/new/newPoll", requestOptions)
         .then(response => response.json())
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            alert("Your Poll Has Been Recorded! In 48 Hours, We'll send your the community's response!")
+        })
+        
         .catch(error => console.log('error', error));
         }
     

@@ -43,6 +43,30 @@ router.post('/:pollId', (req, res) => {
     }))
 })
 
+router.post('/dev/:pollId', (req, res) => {
+    let pollId = req.params.pollId
+    console.log(req.body.session)
+    let userId = jwt.decode(req.body.session, process.env.JWT_SECRET)
+    console.log(`Checking Prior Voting for ${userId.id} on Poll ID ${req.params.pollId}`)
+    Poll.findOne(
+        {
+            where: {id: pollId},
+        })
+    .then(poll => {
+        
+        Response.findOne({
+            where: {
+                pollId: poll.dataValues.id,
+                }
+        }).then(result => {
+            console.log(result)
+            res.send([poll, result])
+        })
+    })
+    .catch(err => res.status(500).json ({
+        error: err
+    }))
+})
 // ROUTE TO POST NEW POLL
 router.post('/new/newPoll', (req, res) => {
     console.log("The New Poll Request Looks Like", req.body)
@@ -101,5 +125,18 @@ router.get('/status/closed', (req,res) => {
     })
     )})
 
+    router.get('/status/active', (req,res) => {
+        Poll.findAll(
+            {where: {changedState: true},
+            order: [
+                ['id', 'ASC']
+            ]})
+        .then(poll => {
+            res.status(200).json(poll)
+        })
+        .catch(err => res.json ({
+        error: err
+    })
+    )})
 
 module.exports = router; 
