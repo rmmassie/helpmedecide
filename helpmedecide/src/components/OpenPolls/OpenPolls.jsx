@@ -45,6 +45,7 @@ class OpenPoll extends React.Component {
             return ( 
                 <>
                 <h4>Active Polls</h4>
+                <p>Voting is still open on these polls. Cast your Vote!</p>
                 {
                 this.state.polls.map(function(poll)
                 {
