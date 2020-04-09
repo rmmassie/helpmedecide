@@ -5,6 +5,7 @@ import OpenPolls from '../OpenPolls/OpenPolls'
 import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Vote from '../Vote/Vote'
 import NewPoll2 from '../MakePoll/NewPoll2';
+import Navbar from '../Navbar/Navbar';
 
 
 class Home extends React.Component {
@@ -46,6 +47,7 @@ class Home extends React.Component {
       return (
       <div className="polls">
         <div className="voteContainer">
+        <Navbar />
         <NewPoll2 />
         </div>
        
