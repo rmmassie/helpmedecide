@@ -76,7 +76,9 @@ router.get('/status/active', (req,res) => {
         order: [
             ['id', 'ASC']
         ]})
-    .then(poll => res.status(200).json(poll))
+    .then(poll => {
+        res.status(200).json(poll)
+    })
     .catch(err => res.json ({
     error: err
 })

@@ -1,7 +1,6 @@
 import React from 'react';
 import './Poll.css'
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
+import { FormLabel, Button, TextField } from '@material-ui/core'
 
 
 class NewPoll2 extends React.Component {
@@ -59,39 +58,43 @@ class NewPoll2 extends React.Component {
         <div className="home">
             <div className="pollContainer">
                 <form>
+                    <FormLabel>Question: TLDR;</FormLabel>
                 <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
                     console.log(e.target.value)
                     this.setState({
                         pollQuestion: e.target.value,
                     })
-              }} placeholder="Summarize the Question You'd like Help With" />
+              }} placeholder="Question" />
+              <FormLabel>Option 1</FormLabel>
                 <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
                     console.log(e.target.value)
                     this.setState({
                         answer1: e.target.value,
                     })
               }} placeholder="First Option" />
+              <FormLabel>Option 2</FormLabel>
                 <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
                     console.log(e.target.value)
                     this.setState({
                         answer2: e.target.value,
                     })
               }} placeholder="Second Option" />
+               <FormLabel>Tags (Seperate by Commas)</FormLabel>
               <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
                     console.log(e.target.value)
                     this.setState({
                         tags: e.target.value,
                     })
               }} placeholder="Tags" />
+              <FormLabel>Give Us A Short Summary</FormLabel>
               <TextField required id="standard-required" label="Required" autoComplete="off" onChange={e => {
                     console.log(e.target.value)
                     this.setState({
                         summary: e.target.value,
                     })
-              }} placeholder="summary" />
+              }} placeholder="1000 Character Limit" />
                 <Button
                     type="submit"
-                    fullWidth
                     variant="contained"
                     color="primary"
                     className="submit"

@@ -2,7 +2,7 @@ import React from 'react';
 import './Home.css'
 // import Button from '@material-ui/core/Button';
 import OpenPolls from '../OpenPolls/OpenPolls'
-// import ClosedPolls from '../ClosedPolls/ClosedPolls'
+import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Vote from '../Vote/Vote'
 import NewPoll2 from '../MakePoll/NewPoll2';
 
@@ -45,31 +45,32 @@ class Home extends React.Component {
       //Show Active Polls
       return (
       <div className="polls">
-        
-        <div className="pollcontainer">
-        <OpenPolls vote={this.state.vote} setVote={this.setVote} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted} />  
-        </div>
+        <div className="voteContainer">
         <NewPoll2 />
+        </div>
+       
+        <div className="pollcontainer">
+          <div className="pollList">
+          <OpenPolls vote={this.state.vote} setVote={this.setVote} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted} />
+          </div>
+          <div className="pollList">
+          <ClosedPolls vote={this.state.vote} setVote={this.setVote} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted} />    
+          </div>
+        
+        
+        </div>
+        
       </div>
       )}
       else if (this.state.vote === true && this.state.pollId !== null) {
         //Show the vote window
         return (
+          
           <Vote vote={this.state.vote} setVote={this.setVote} pollId={this.state.pollId} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted}/>
         )
       }
-
-    
-    return (
-        
-        
-        <Vote />
-       
-  
-    )
+   }
 }
-}
-
 
 export default Home;
 

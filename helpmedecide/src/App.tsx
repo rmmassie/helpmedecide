@@ -5,6 +5,7 @@ import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
 import Home from './components/Home/Home'
 
+
 interface Props {
 
 }
@@ -73,7 +74,7 @@ class App extends React.Component<Props, State> {
       return (
       <div className="Main">
         
-        <Home logout={this.stepLogout}/>
+        <Home />
         </div>
     )
     }
