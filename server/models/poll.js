@@ -19,7 +19,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
         },
         summary: {
-            type: DataTypes.STRING(1000),
+            type: DataTypes.STRING(1001),
         },
         changedState: {
             type: DataTypes.BOOLEAN,

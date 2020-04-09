@@ -9,6 +9,7 @@ class Vote extends React.Component {
         question: "",
         solution1: "",
         solution2: "",
+        summary: "",
         havePoll: false,
         //DON'T HARDCODE RESPONSES
         vote: null,
@@ -50,6 +51,7 @@ class Vote extends React.Component {
             question: result[0].question,
             solution1: result[0].solution1,
             solution2: result[0].solution2,
+            summary: result[0].summary,
             havePoll: true,
             hasVoted: voted,
             vote: vote
@@ -90,10 +92,10 @@ render() {
     
     if (this.state.havePoll === true && this.state.hasVoted === false) {
         return (
-            <div className="home">
+            <div className="homeVote">
                 <h2>POLL ID is {this.props.pollId}</h2>
                <h2>{this.state.question}</h2>
-               <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
+               <p>{this.state.summary}</p>
                <div>
                     <h3>{this.state.solution1}</h3>
                     <Button variant="contained" color="secondary" onClick={() => {this.voteHandler(1)}}>Vote Option 1</Button>
@@ -111,10 +113,10 @@ render() {
     } else if (this.state.havePoll === true && this.state.hasVoted === true) {
         if (this.state.vote === 1) {
             return (
-                <div className="home">
-                    <h2>POLL ID is {this.props.pollId}</h2>
+                <div className="homeVote">
+                   
                    <h2>{this.state.question}</h2>
-                   <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
+                   <p>{this.state.summary}</p>
                    <p><b>You voted for {this.state.solution1}</b></p>
                    <img src="/pieChart.png" alt=""/>
                    <p>Image is just a place Holder.</p>
@@ -124,10 +126,10 @@ render() {
                 )
         } else if (this.state.vote === 2) {
             return (
-                <div className="home">
+                <div className="homeVote">
                     <h2>POLL ID is {this.props.pollId}</h2>
                    <h2>{this.state.question}</h2>
-                   <p>This might end up being some longer form description of the problem at hand. Here the user can add extra information beyond the brevity of the question field.</p>
+                   <p>{this.state.summary}</p>
                    <p><b>You voted for {this.state.solution2}</b></p>
                    <img src="/pieChart.png" alt=""/>
                    <p>Image is just a place Holder.</p>

@@ -6,12 +6,13 @@ const Response = sequelize.import('../models/response')
 const jwt = require('jsonwebtoken');
 
 //FETCH ALL RESPONSES from A GIVEN POLL
-router.get('/', (req, res) => {
-    Response.findAll((
-        {where: {},
-        order: [
-            ['id', 'ASC']
-        ]}))
+router.get('/get/:pollId', (req, res) => {
+    let pollId = req.params.pollId;
+    Response.findAndCountAll((
+        {where: {pollId: pollId},
+        attributes: ['response'], 
+        group: ['response']
+        }))
     .then(poll => res.status(200).json(poll))
     .catch(err => res.status(500).json ({
         error: err
@@ -44,8 +45,9 @@ router.post('/:pollID/', (req, res) => {
 });
 
 //GET POLLS & RESPONSES FROM A GIVEN USER
-router.get('/:userID', (req, res) => {
+// router.get('/:userID', (req, res) => {
     
-    res.send('This is the GET POLLS & RESPONSES FOR SPECIFIC USER Route')
-});
+//     res.send('This is the GET POLLS & RESPONSES FOR SPECIFIC USER Route')
+// });
+
 module.exports = router; 
