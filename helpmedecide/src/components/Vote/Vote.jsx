@@ -44,8 +44,8 @@ class Vote extends React.Component {
         .then(votes => {
             let voted
             let vote
-            let solution1parse = parseInt(votes.count[0].count,0)
-            let solution2parse = parseInt(votes.count[1].count,0)
+            let solution1parse = parseInt(votes.count[0] === undefined ? 0:votes.count[0].count,0)
+            let solution2parse = parseInt(votes.count[1] === undefined ? 0:votes.count[1].count,0)
 
             if (result[1] === null) {
                 voted = false
@@ -69,7 +69,7 @@ class Vote extends React.Component {
             console.log(`Logging Vote.jsx componentDidMount`)
             console.log(`${solution1parse} votes for ${result[0].solution1}`)
             console.log(`${solution2parse} votes for ${result[0].solution2}`)
-            let totalVotes = parseInt(votes.count[0].count,0) + parseInt(votes.count[1].count,0)
+            let totalVotes = solution1parse + solution2parse
             console.log(`${totalVotes} total Votes`)
             console.log(`-----------------------------------------------`)
             })
