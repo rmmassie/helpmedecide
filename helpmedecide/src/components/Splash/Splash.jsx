@@ -22,9 +22,9 @@ class Splash extends React.Component {
                 <img src="/logo1.png" alt=""/>
                 </div>
                 <div className="middle">
-                <p>helpMeDecide is a community base decision helper.</p><hr></hr>
+                <p>helpMeDecide is a community-based decision helper.</p><hr />
                 <p> Stuck at a crossroads?</p>
-                <p>Let the Community Decide</p><hr></hr>
+                <p>Let the Community Decide</p><hr />
                 </div>
                 <div className="bottom">
                 <Button className="loginButton" variant="contained" onClick={this.props.login} color="primary">Login</Button>

@@ -47,8 +47,8 @@ class OpenPoll extends React.Component {
 
             return ( 
                 <>
-                <h4>Active Polls</h4>
-                <p>Voting is still open on these polls. Cast your Vote!</p>
+                <h4 className="activePoll">Active Polls</h4>
+                <p className="pollColor">Voting is still open on these polls. Cast your Vote!</p>
                 {
                 this.state.polls.map(function(poll)
                 {
@@ -59,12 +59,12 @@ class OpenPoll extends React.Component {
                     Poll ID - {poll.id} - {poll.question}
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <p>{poll.solution1} or {poll.solution2}</p><br></br>
+                        <p className="pollSolution">{poll.solution1} or {poll.solution2}</p><br></br>
                         <Button variant="contained" color="secondary" onClick={() => this.props.setVote(true, poll.id)}>Vote!</Button>
                         {
                             poll.tags.map((tag, index) => {
                                 console.log('The index is:', index, 'The tag is:', tag)
-                                return(
+                                return (
                                     <Chip key={index} label={tag} onClick={handleClick}/>
                                     )
                             }) 
