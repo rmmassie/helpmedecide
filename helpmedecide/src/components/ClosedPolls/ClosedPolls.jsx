@@ -44,8 +44,8 @@ class OpenPoll extends React.Component {
         if (this.state.polls !== undefined) {
             return ( 
                 <>
-                <h4>Completed Polls</h4>
-                <p>These polls are closed and the results are in!</p>
+                <h4 className="completedPoll">Completed Polls</h4>
+                <p class="pollColor">These polls are closed and the results are in!</p>
                 {
                 this.state.polls.map(function(poll)
                 {
