@@ -3,7 +3,8 @@ import './App.css'
 import Register from './components/Login/register'
 import Login from './components/Login/login'
 import Splash from './components/Splash/Splash'
-import Home from './components/Home/Home'
+import Navbar from './components/Navbar/Navbar'
+import { BrowserRouter as Router } from 'react-router-dom';
 
 
 interface Props {
@@ -73,8 +74,10 @@ class App extends React.Component<Props, State> {
     } else if (this.state.step === "Authed") {
       return (
       <div className="Main">
+        <Router>
+        <Navbar splash={this.stepLogout} />
+        </Router>
         
-        <Home />
         </div>
     )
     }

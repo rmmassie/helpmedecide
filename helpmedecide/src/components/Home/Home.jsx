@@ -1,11 +1,8 @@
 import React from 'react';
 import './Home.css'
-// import Button from '@material-ui/core/Button';
 import OpenPolls from '../OpenPolls/OpenPolls'
 import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Vote from '../Vote/Vote'
-import NewPoll2 from '../MakePoll/NewPoll2';
-import Navbar from '../Navbar/Navbar';
 
 
 class Home extends React.Component {
@@ -47,8 +44,7 @@ class Home extends React.Component {
       return (
       <div className="polls">
         <div className="voteContainer">
-        <Navbar />
-        <NewPoll2 />
+        {/* <NewPoll2 /> */}
         </div>
        
         <div className="pollcontainer">
@@ -67,14 +63,12 @@ class Home extends React.Component {
       else if (this.state.vote === true && this.state.pollId !== null) {
         //Show the vote window
         return (
-          
-          <Vote vote={this.state.vote} setVote={this.setVote} pollId={this.state.pollId} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted}/>
+          <div className="vote">
+            <Vote vote={this.state.vote} setVote={this.setVote} pollId={this.state.pollId} hasVoted={this.state.hasVoted} setHasVoted={this.setHasVoted}/>
+          </div>
         )
       }
    }
 }
 
 export default Home;
-
-  // Logout button to be dropped into NavBar
-  //<Button type="submit" variant="contained" color="primary" className="submit" onClick={this.logoutHandler}>Sign Out</Button>
