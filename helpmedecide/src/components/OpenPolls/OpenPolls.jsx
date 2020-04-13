@@ -65,8 +65,13 @@ class OpenPoll extends React.Component {
                         {
                             poll.tags.map((tag, index) => {
                                 console.log('The index is:', index, 'The tag is:', tag)
+<<<<<<< HEAD
+                                return(
+                                    <Chip className="chip" key={index} label={tag} onClick={handleClick}/>
+=======
                                 return (
-                                    <Chip key={index} label={tag} onClick={handleClick}/>
+                                    <Chip id="Chip" key={index} label={tag} onClick={handleClick}/>
+>>>>>>> 41d52bce1b534e59880bd3669fa05c22eeb86c9a
                                     )
                             }) 
                         }

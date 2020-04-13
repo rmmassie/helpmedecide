@@ -47,3 +47,16 @@ p {
 .pollSolution {
   font-weight: bold;
 }
+
+#Chip {
+  margin-left: 1vw;
+}
+
+#Navbar {
+  display: flex;
+}
+
+.vote {
+  position: absolute;
+  top: 5vh;
+}
