@@ -61,7 +61,7 @@ class App extends React.Component<Props, State> {
     } else if (this.state.step === "Login") {
       return (
         <div className="App">
-        <Login register={this.stepRegister} authed={this.stepLoggedIn}/>
+        <Login register={this.stepRegister} authed={this.stepLoggedIn} splash={this.stepLogout}/>
         </div>
       );
     } else if (this.state.step === "Register") {
@@ -74,7 +74,7 @@ class App extends React.Component<Props, State> {
       return (
       <div className="Main">
         
-        <Home />
+        <Home splash={this.stepLogout}/>
         </div>
     )
     }
