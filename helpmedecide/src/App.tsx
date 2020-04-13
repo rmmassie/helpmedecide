@@ -78,10 +78,6 @@ class App extends React.Component<Props, State> {
         <Navbar splash={this.stepLogout} />
         </Router>
         
-<<<<<<< HEAD
-        <Home splash={this.stepLogout}/>
-=======
->>>>>>> 41d52bce1b534e59880bd3669fa05c22eeb86c9a
         </div>
     )
     }

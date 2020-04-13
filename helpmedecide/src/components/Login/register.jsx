@@ -8,7 +8,7 @@ import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import APIURL from '../helper/environment'
+import APIURL from '../helpers/environment'
 
 class Register extends React.Component {
   constructor(props) {

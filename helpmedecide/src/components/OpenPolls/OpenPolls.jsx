@@ -6,7 +6,7 @@ import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import APIURL from '../helpers/environmnet'
+import APIURL from '../helpers/environment'
 
 class OpenPoll extends React.Component {
     constructor(props) {
@@ -65,13 +65,8 @@ class OpenPoll extends React.Component {
                         {
                             poll.tags.map((tag, index) => {
                                 console.log('The index is:', index, 'The tag is:', tag)
-<<<<<<< HEAD
-                                return(
-                                    <Chip className="chip" key={index} label={tag} onClick={handleClick}/>
-=======
                                 return (
                                     <Chip id="Chip" key={index} label={tag} onClick={handleClick}/>
->>>>>>> 41d52bce1b534e59880bd3669fa05c22eeb86c9a
                                     )
                             }) 
                         }

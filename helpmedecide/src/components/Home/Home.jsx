@@ -5,6 +5,8 @@ import ClosedPolls from '../ClosedPolls/ClosedPolls'
 import Vote from '../Vote/Vote'
 
 
+
+
 class Home extends React.Component {
   constructor(props) {
     super(props);
